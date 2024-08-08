@@ -31,6 +31,14 @@ jobs:
         with:
           region: us-east-1
 
+      - name: List directory contents
+        run: |
+          ls -la
+          ls -la example-voting-app
+          ls -la example-voting-app/vote
+          ls -la example-voting-app/result
+          ls -la example-voting-app/worker
+
       - name: Build and push Docker image for Vote
         run: |
           docker buildx create --use
@@ -48,7 +56,7 @@ jobs:
 
       - name: Register ECS task definition
         run: |
-          aws ecs register-task-definition --cli-input-json file://ecs-task-definition.json
+          aws ecs register-task-definition --cli-input-json file://ecs-definition/ecs-task-definition.json
 
       - name: Deploy to ECS
         run: |
