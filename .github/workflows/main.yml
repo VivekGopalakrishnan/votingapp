@@ -16,9 +16,6 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -34,17 +31,17 @@ jobs:
       - name: Build and push Docker image for Vote
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64 -f example-voting-app-main/vote/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-vote-ecr:latest example-voting-app-main/vote --push
+          docker buildx build --platform linux/amd64 -f example-voting-app-main/vote/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-ecr:latest example-voting-app-main/vote --push
 
       - name: Build and push Docker image for Result
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64 -f example-voting-app-main/result/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-result-ecr:latest example-voting-app-main/result --push
+          docker buildx build --platform linux/amd64 -f example-voting-app-main/result/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-ecr:latest example-voting-app-main/result --push
 
       - name: Build and push Docker image for Worker
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64 -f example-voting-app-main/worker/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-worker-ecr:latest example-voting-app-main/worker --push
+          docker buildx build --platform linux/amd64 -f example-voting-app-main/worker/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-ecr:latest example-voting-app-main/worker --push
 
       - name: Register ECS task definition
         run: |
