@@ -95,8 +95,6 @@ Details: Distributed application instances across multiple availability zones.
 Purpose: To receive notifications about application issues.
 Details:
 Prometheus Alertmanager: Configured to send alerts based on defined metrics.
-PagerDuty/OpsGenie: Integrated for incident management and alert notifications.
-Repository URL: Your GitHub Repository
 
 Documentation: Included detailed instructions and configuration files in the repository for reproducibility.
 
