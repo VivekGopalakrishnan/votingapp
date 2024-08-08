@@ -50,13 +50,4 @@ jobs:
       - name: Deploy to ECS
         run: |
           aws ecs update-service --cluster votingapp-ecscluster-demo --service example-voting-app-service --force-new-deployment
-      
-      - name: Install Argo CD CLI
-        run: |
-          curl -sSL -o argocd https://github.com/argoproj/argo-cd/releases/download/v2.7.1/argocd-linux-amd64
-          chmod +x ./argocd
-          sudo mv ./argocd /usr/local/bin/argocd
-      
-      - name: Sync Argo CD application
-        run: |
-          argocd app sync example-voting-app
+
