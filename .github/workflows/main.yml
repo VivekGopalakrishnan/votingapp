@@ -31,28 +31,20 @@ jobs:
         with:
           region: us-east-1
 
-      - name: List directory contents
-        run: |
-          ls -la
-          ls -la example-voting-app
-          ls -la example-voting-app/vote
-          ls -la example-voting-app/result
-          ls -la example-voting-app/worker
-
       - name: Build and push Docker image for Vote
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64 -f example-voting-app/vote/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-vote-ecr:latest example-voting-app/vote --push
+          docker buildx build --platform linux/amd64 -f example-voting-app-main/vote/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-vote-ecr:latest example-voting-app-main/vote --push
 
       - name: Build and push Docker image for Result
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64 -f example-voting-app/result/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-result-ecr:latest example-voting-app/result --push
+          docker buildx build --platform linux/amd64 -f example-voting-app-main/result/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-result-ecr:latest example-voting-app-main/result --push
 
       - name: Build and push Docker image for Worker
         run: |
           docker buildx create --use
-          docker buildx build --platform linux/amd64 -f example-voting-app/worker/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-worker-ecr:latest example-voting-app/worker --push
+          docker buildx build --platform linux/amd64 -f example-voting-app-main/worker/Dockerfile -t 851725539465.dkr.ecr.us-east-1.amazonaws.com/votingapp-worker-ecr:latest example-voting-app-main/worker --push
 
       - name: Register ECS task definition
         run: |
