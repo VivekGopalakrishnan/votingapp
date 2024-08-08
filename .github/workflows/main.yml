@@ -49,8 +49,7 @@ jobs:
 
       - name: Deploy to ECS
         run: |
-          aws ecs update-service --cluster example-voting-app-cluster --service example-voting-app-service --force-new-deployment
-
+          aws ecs update-service --cluster votingapp-ecscluster-demo --service example-voting-app-service --force-new-deployment
       - name: Sync Argo CD application
         run: |
           argocd app sync example-voting-app
